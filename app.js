@@ -18,17 +18,22 @@ const gameState = {
     }
   },
   inventory: [
-    // Экипировка
+    // ---------- ОРУЖИЕ (готовые предметы) ----------
     { id: 'w1', name: 'Мит. кинжал', type: 'weapon', category: 'equip', icon: '🗡️', count: 1, class: ['thief'], attack: 18 },
-    { id: 'h1', name: 'Кожаная шляпа', type: 'head', category: 'equip', icon: '🧢', count: 1, class: ['thief', 'warrior'], defense: 5 },
-    { id: 'a1', name: 'Кожаный доспех', type: 'armor', category: 'equip', icon: '🛡️', count: 1, class: ['thief', 'warrior'], defense: 10 },
     { id: 'w2', name: 'Железный меч', type: 'weapon', category: 'equip', icon: '🗡️', count: 1, class: ['warrior'], attack: 16 },
-    { id: 'h2', name: 'Бронзовый шлем', type: 'head', category: 'equip', icon: '🧢', count: 2, class: ['warrior'], defense: 8 },
-    // Расходники
+    
+    // ---------- ЗАГЛУШКИ ДЛЯ ОСТАЛЬНЫХ СЛОТОВ ----------
+    { id: 'head_stub', name: 'Кожаная шляпа', type: 'head', category: 'equip', icon: '🧢', count: 1, class: ['thief', 'warrior'], defense: 5 },
+    { id: 'gloves_stub', name: 'Кожаные перчатки', type: 'gloves', category: 'equip', icon: '🧤', count: 1, class: ['thief', 'warrior'], defense: 3 },
+    { id: 'armor_stub', name: 'Кожаный доспех', type: 'armor', category: 'equip', icon: '🛡️', count: 1, class: ['thief', 'warrior'], defense: 10 },
+    { id: 'acc_stub', name: 'Амулет', type: 'accessory', category: 'equip', icon: '💍', count: 1, class: ['thief', 'warrior'] },
+    
+    // ---------- РАСХОДНИКИ ----------
     { id: 'c1', name: 'Зелье', type: 'consumable', category: 'consumables', icon: '🧪', count: 5 },
     { id: 'c2', name: 'Эфир', type: 'consumable', category: 'consumables', icon: '🔮', count: 2 },
     { id: 'c3', name: 'Антидот', type: 'consumable', category: 'consumables', icon: '💊', count: 3 },
-    // Разное
+    
+    // ---------- РАЗНОЕ ----------
     { id: 'm1', name: 'Ключ', type: 'misc', category: 'misc', icon: '🔑', count: 1 },
     { id: 'm2', name: 'Записка', type: 'misc', category: 'misc', icon: '📜', count: 1 },
   ],
