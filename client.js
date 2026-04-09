@@ -48,6 +48,73 @@ function handleServerMessage(msg) {
       characterName = msg.character;
       gameState = msg.gameState;
       playersList = msg.players || [];
+
+      // ========== РЕГИСТРАЦИЯ НОВОГО ИГРОКА ==========
+function showRegistrationPanel(login, password) {
+  // Скрываем форму входа, показываем панель создания персонажа
+  const loginBox = document.querySelector('.login-box');
+  loginBox.innerHTML = `
+    <h1>Создание персонажа</h1>
+    <div class="class-selection">
+      <p>Выберите класс:</p>
+      <div class="class-grid" id="classGrid">
+        <!-- Карточки будут добавлены через JS -->
+      </div>
+      <div class="reg-actions">
+        <button class="login-btn" id="confirmRegBtn">Создать персонажа</button>
+        <button class="login-btn secondary" id="cancelRegBtn">Назад</button>
+      </div>
+      <div id="regError" class="error-message"></div>
+    </div>
+  `;
+
+  const classGrid = document.getElementById('classGrid');
+  const classes = [
+    { id: 'thief', name: 'Вор', icon: '🗡️', available: true },
+    { id: 'warrior', name: 'Воин', icon: '⚔️', available: false },
+    { id: 'dragoon', name: 'Драгун', icon: '🔱', available: false },
+    { id: 'summoner', name: 'Призыватель', icon: '🔮', available: false },
+    { id: 'bluemage', name: 'Синий маг', icon: '🍴', available: false },
+    { id: 'whitemage', name: 'Белый маг', icon: '🎵', available: false },
+    { id: 'blackmage', name: 'Чёрный маг', icon: '🔥', available: false },
+    { id: 'ninja', name: 'Ниндзя', icon: '🐾', available: false }
+  ];
+
+  let selectedClass = 'thief';
+
+  classes.forEach(cls => {
+    const card = document.createElement('div');
+    card.className = `class-card ${cls.available ? '' : 'disabled'} ${cls.id === selectedClass ? 'selected' : ''}`;
+    card.dataset.class = cls.id;
+    card.innerHTML = `
+      <span class="class-icon-large">${cls.icon}</span>
+      <span class="class-name">${cls.name}</span>
+      ${!cls.available ? '<span class="coming-soon">Скоро</span>' : ''}
+    `;
+    if (cls.available) {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.class-card').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        selectedClass = cls.id;
+      });
+    }
+    classGrid.appendChild(card);
+  });
+
+  document.getElementById('confirmRegBtn').addEventListener('click', () => {
+    sendMessage({
+      type: 'register',
+      login: login,
+      password: password,
+      class: selectedClass,
+      name: login // можно потом дать возможность указать имя отдельно
+    });
+  });
+
+  document.getElementById('cancelRegBtn').addEventListener('click', () => {
+    location.reload(); // возвращаемся к форме входа
+  });
+}
       // Скрываем форму входа, показываем основной интерфейс
       showMainInterface();
       break;
