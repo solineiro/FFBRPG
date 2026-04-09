@@ -557,3 +557,40 @@ body {
     font-size: 1.2rem;
   }
 }
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+.class-card {
+  background: #1e3347;
+  border: 2px solid #3a6ea5;
+  border-radius: 12px;
+  padding: 10px 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+.class-card.selected {
+  border-color: #e6c27a;
+  box-shadow: 0 0 12px #e6c27a;
+  background: #2e577a;
+}
+.class-card.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.class-icon-large {
+  font-size: 2.5rem;
+  display: block;
+}
+.class-name {
+  font-weight: bold;
+  color: #f0e68c;
+}
+.coming-soon {
+  font-size: 0.6rem;
+  color: #ff8a8a;
+  display: block;
+}
