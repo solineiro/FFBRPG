@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>FF IX RPG – Вход</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-box">
+      <h1>Final Fantasy IX RPG</h1>
+      <div class="crystal-icon"></div>
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="login">Логин</label>
+          <input type="text" id="login" name="login" placeholder="Введите логин" required>
+        </div>
+        <div class="input-group">
+          <label for="password">Пароль</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="login-btn">Войти</button>
+        <div id="errorMessage" class="error-message"></div>
+      </form>
+      <div class="demo-hint">
+        <p>Демо доступ:</p>
+        <p>Игрок: zidan / thief123</p>
+        <p>Мастер: master / master123</p>
+      </div>
+    </div>
+  </div>
+  <script src="client.js"></script>
+</body>
+</html>

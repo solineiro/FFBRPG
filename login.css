@@ -1,0 +1,116 @@
+/* Стили в духе FF IX */
+body {
+  margin: 0;
+  padding: 0;
+  background: #0b1424;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+.login-box {
+  background: linear-gradient(145deg, #0e1a26 0%, #1a2a3a 100%);
+  border: 3px ridge #4f7a9e;
+  border-radius: 24px;
+  padding: 30px 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 20px #1e3a5f;
+  text-align: center;
+}
+
+h1 {
+  color: #e6c27a;
+  text-shadow: 3px 3px 0 #0a1428;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.crystal-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  background: radial-gradient(circle at 30% 30%, #aad0ff, #3a6ea5);
+  border-radius: 50% 30% 50% 30%;
+  transform: rotate(45deg);
+  box-shadow: 0 0 20px #5b8cbe, inset 0 0 10px white;
+  border: 2px solid #c0c8d0;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  color: #bdd4e6;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 black;
+}
+
+input {
+  width: 100%;
+  padding: 12px 15px;
+  background: #0a1428;
+  border: 2px solid #3a6ea5;
+  border-radius: 30px;
+  color: #f0e68c;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: inset 0 2px 5px black, 0 2px 0 #0a121c;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #9bc2e6;
+  box-shadow: inset 0 2px 5px black, 0 0 10px #5b8cbe;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #2e577a;
+  border: 2px solid #9bc2e6;
+  border-radius: 40px;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 black;
+  box-shadow: inset 0 1px 4px #aad0ff, 0 4px 0 #0a1a2a;
+  cursor: pointer;
+  transition: 0.05s linear;
+  margin-top: 10px;
+}
+
+.login-btn:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 1px 4px #aad0ff, 0 2px 0 #0a1a2a;
+}
+
+.error-message {
+  color: #ff8a8a;
+  margin-top: 15px;
+  min-height: 20px;
+  text-shadow: 1px 1px 0 black;
+}
+
+.demo-hint {
+  margin-top: 25px;
+  color: #7f9fbf;
+  font-size: 0.8rem;
+  border-top: 1px dashed #3a6ea5;
+  padding-top: 15px;
+}
+
+.demo-hint p {
+  margin: 5px 0;
+}
