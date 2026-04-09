@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>FF IX RPG – Лист персонажа</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Навигационная панель сверху -->
+    <nav class="top-nav">
+      <button class="nav-btn active">Персонаж</button>
+      <button class="nav-btn">Инвентарь</button>
+      <button class="nav-btn">Способности</button>
+      <button class="nav-btn">Бестиарий</button>
+      <button class="nav-btn">Заметки</button>
+    </nav>
+
+    <!-- Основной контент страницы 1 -->
+    <main class="character-sheet">
+      <!-- Верхняя секция: аватар + имя/класс/уровень + параметры -->
+      <div class="top-section">
+        <!-- Аватар (левая верхняя область) -->
+        <div class="avatar-container" id="avatarContainer">
+          <img id="avatarImg" src="assets/default_avatar.png" alt="Аватар">
+          <input type="file" id="avatarUpload" accept="image/*" capture style="display: none;">
+        </div>
+
+        <!-- Блок справа от аватара: имя, класс, уровень, HP/MP, Сил/Маг -->
+        <div class="info-panel">
+          <div class="name-class-level">
+            <input type="text" class="char-name" value="Зидан" placeholder="Имя" maxlength="20">
+            <div class="class-icon" title="Вор">
+              <img src="assets/icons/class_thief.png" alt="Вор">
+            </div>
+            <div class="level-box">
+              <span class="level-label">Lv</span>
+              <span class="level-value">23</span>
+            </div>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-label">HP</span>
+              <span class="stat-value" id="hpValue">234 / 450</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">MP</span>
+              <span class="stat-value" id="mpValue">56 / 120</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Сил</span>
+              <span class="stat-value" id="strValue">21</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Маг</span>
+              <span class="stat-value" id="magValue">18</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Блок экипировки (под аватаром, на всю ширину) -->
+      <div class="equipment-section">
+        <div class="equip-slot" data-slot="weapon">
+          <span class="slot-icon">⚔️</span>
+          <span class="slot-name">Оружие</span>
+          <span class="slot-item" id="weaponSlot">Мит. кинжал</span>
+        </div>
+        <div class="equip-slot" data-slot="head">
+          <span class="slot-icon">🧢</span>
+          <span class="slot-name">Головной убор</span>
+          <span class="slot-item" id="headSlot">Кожаная шляпа</span>
+        </div>
+        <div class="equip-slot" data-slot="gloves">
+          <span class="slot-icon">🧤</span>
+          <span class="slot-name">Перчатки</span>
+          <span class="slot-item" id="glovesSlot">—</span>
+        </div>
+        <div class="equip-slot" data-slot="armor">
+          <span class="slot-icon">🛡️</span>
+          <span class="slot-name">Броня</span>
+          <span class="slot-item" id="armorSlot">Кожаный доспех</span>
+        </div>
+        <div class="equip-slot" data-slot="accessory">
+          <span class="slot-icon">💍</span>
+          <span class="slot-name">Аксессуар</span>
+          <span class="slot-item" id="accessorySlot">—</span>
+        </div>
+      </div>
+
+      <!-- Счётчик монет в правом нижнем углу -->
+      <div class="gil-counter" id="gilCounter">
+        <img src="assets/icons/gil.png" alt="Gil" class="gil-icon">
+        <span class="gil-value">123,456</span>
+      </div>
+    </main>
+  </div>
+
+  <!-- Модальное окно для действий с монетами (скрыто по умолчанию) -->
+  <div class="modal-overlay" id="gilModal" style="display: none;">
+    <div class="modal-content">
+      <h3>Монеты</h3>
+      <div class="modal-buttons">
+        <button class="modal-btn" id="transferGilBtn">Передать</button>
+        <button class="modal-btn" id="absorbGilBtn">Поглотить</button>
+      </div>
+      <button class="modal-close" id="closeGilModal">Закрыть</button>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
