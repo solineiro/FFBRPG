@@ -1,5 +1,5 @@
 // client.js – Final Fantasy IX RPG Client
-// Полная интеграция с сервером: авторизация, синхронизация состояния, интерфейс персонажа и инвентаря.
+// Полная интеграция с сервером: авторизация, регистрация, синхронизация состояния, интерфейс персонажа и инвентаря.
 
 let ws = null;
 let currentUser = null;
@@ -29,7 +29,6 @@ function connectWebSocket() {
   ws.onclose = () => {
     console.log('Соединение закрыто');
     if (currentUser) {
-      // Показываем сообщение о потере связи
       alert('Соединение с сервером потеряно. Перезагрузите страницу.');
     }
   };
@@ -48,18 +47,91 @@ function handleServerMessage(msg) {
       characterName = msg.character;
       gameState = msg.gameState;
       playersList = msg.players || [];
+      showMainInterface();
+      break;
 
-      // ========== РЕГИСТРАЦИЯ НОВОГО ИГРОКА ==========
+    case 'login_error':
+      if (msg.message === 'Неизвестный логин') {
+        const login = document.getElementById('login').value.trim();
+        const password = document.getElementById('password').value;
+        if (login && password) {
+          const create = confirm('Пользователь не найден. Создать нового персонажа?');
+          if (create) {
+            showRegistrationPanel(login, password);
+          }
+        } else {
+          showError('Введите логин и пароль');
+        }
+      } else {
+        showError(msg.message);
+      }
+      break;
+
+    case 'register_success':
+      currentUser = msg.login;
+      userRole = 'player';
+      characterName = msg.character;
+      gameState = msg.gameState;
+      showMainInterface();
+      break;
+
+    case 'register_error':
+      alert('Ошибка регистрации: ' + msg.message);
+      break;
+
+    case 'state_update':
+      gameState = msg.gameState;
+      if (userRole === 'player') {
+        updateCharacterSheetUI();
+        renderInventory();
+      }
+      break;
+
+    case 'equip_error':
+      alert('Ошибка экипировки: ' + msg.message);
+      break;
+
+    case 'player_connected':
+    case 'player_disconnected':
+    case 'player_state_changed':
+      if (userRole === 'master') {
+        requestPlayersList();
+      }
+      break;
+
+    default:
+      console.log('Неизвестное сообщение от сервера:', msg);
+  }
+}
+
+function sendMessage(msg) {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify(msg));
+  } else {
+    console.error('WebSocket не готов');
+  }
+}
+
+function requestPlayersList() {
+  // Можно реализовать запрос к серверу позже
+}
+
+// ========== ИНТЕРФЕЙС ВХОДА ==========
+const loginForm = document.getElementById('loginForm');
+const errorDiv = document.getElementById('errorMessage');
+
+function showError(text) {
+  if (errorDiv) errorDiv.textContent = text;
+}
+
+// ========== РЕГИСТРАЦИЯ НОВОГО ИГРОКА ==========
 function showRegistrationPanel(login, password) {
-  // Скрываем форму входа, показываем панель создания персонажа
   const loginBox = document.querySelector('.login-box');
   loginBox.innerHTML = `
     <h1>Создание персонажа</h1>
     <div class="class-selection">
       <p>Выберите класс:</p>
-      <div class="class-grid" id="classGrid">
-        <!-- Карточки будут добавлены через JS -->
-      </div>
+      <div class="class-grid" id="classGrid"></div>
       <div class="reg-actions">
         <button class="login-btn" id="confirmRegBtn">Создать персонажа</button>
         <button class="login-btn secondary" id="cancelRegBtn">Назад</button>
@@ -107,73 +179,17 @@ function showRegistrationPanel(login, password) {
       login: login,
       password: password,
       class: selectedClass,
-      name: login // можно потом дать возможность указать имя отдельно
+      name: login // имя персонажа по умолчанию = логин
     });
   });
 
   document.getElementById('cancelRegBtn').addEventListener('click', () => {
-    location.reload(); // возвращаемся к форме входа
+    location.reload();
   });
-}
-      // Скрываем форму входа, показываем основной интерфейс
-      showMainInterface();
-      break;
-
-    case 'login_error':
-      showError(msg.message);
-      break;
-
-    case 'state_update':
-      // Обновление состояния от сервера (например, после экипировки)
-      gameState = msg.gameState;
-      if (userRole === 'player') {
-        updateCharacterSheetUI();
-        renderInventory();
-      }
-      break;
-
-    case 'equip_error':
-      alert('Ошибка экипировки: ' + msg.message);
-      break;
-
-    case 'player_connected':
-    case 'player_disconnected':
-    case 'player_state_changed':
-      // Для мастера: обновить список игроков
-      if (userRole === 'master') {
-        // Запросить актуальный список или обновить локально
-        requestPlayersList();
-      }
-      break;
-
-    default:
-      console.log('Неизвестное сообщение от сервера:', msg);
-  }
-}
-
-function sendMessage(msg) {
-  if (ws && ws.readyState === WebSocket.OPEN) {
-    ws.send(JSON.stringify(msg));
-  } else {
-    console.error('WebSocket не готов');
-  }
-}
-
-function requestPlayersList() {
-  // Пока не реализовано на сервере отдельным запросом, но можно добавить
-}
-
-// ========== ИНТЕРФЕЙС ВХОДА ==========
-const loginForm = document.getElementById('loginForm');
-const errorDiv = document.getElementById('errorMessage');
-
-function showError(text) {
-  if (errorDiv) errorDiv.textContent = text;
 }
 
 // ========== ПОСТРОЕНИЕ ОСНОВНОГО ИНТЕРФЕЙСА ==========
 function showMainInterface() {
-  // Очищаем body и создаём структуру приложения
   document.body.innerHTML = '';
   appContainer = document.createElement('div');
   appContainer.className = 'app';
@@ -192,7 +208,6 @@ function showMainInterface() {
   `;
   appContainer.appendChild(nav);
 
-  // Контейнеры страниц
   const pages = ['character', 'inventory', 'abilities', 'bestiary', 'notes'];
   if (userRole === 'master') pages.push('master');
 
@@ -203,15 +218,13 @@ function showMainInterface() {
     appContainer.appendChild(pageDiv);
   });
 
-  // Наполняем страницы содержимым
   buildCharacterPage();
   buildInventoryPage();
-  buildAbilitiesPage();   // заглушка
-  buildBestiaryPage();    // заглушка
-  buildNotesPage();       // заглушка
-  if (userRole === 'master') buildMasterPage(); // заглушка
+  buildAbilitiesPage();
+  buildBestiaryPage();
+  buildNotesPage();
+  if (userRole === 'master') buildMasterPage();
 
-  // Навигация по страницам
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const pageId = btn.dataset.page;
@@ -222,11 +235,9 @@ function showMainInterface() {
     });
   });
 
-  // Инициализация обработчиков событий для персонажа и инвентаря
   initCharacterEvents();
   initInventoryEvents();
 
-  // Первичное обновление UI данными из gameState
   if (userRole === 'player' && gameState) {
     updateCharacterSheetUI();
     renderInventory();
@@ -276,7 +287,6 @@ function buildCharacterPage() {
     </div>
   `;
 
-  // Модальное окно для монет
   const modalHTML = `
     <div class="modal-overlay" id="gilModal" style="display: none;">
       <div class="modal-content">
@@ -301,7 +311,6 @@ function updateCharacterSheetUI() {
   document.getElementById('magValue').textContent = gameState.stats.mag;
   document.getElementById('gilValue').textContent = gameState.gil.toLocaleString();
 
-  // Обновление слотов экипировки
   const slots = ['weapon', 'head', 'gloves', 'armor', 'accessory'];
   slots.forEach(slot => {
     const itemId = gameState.equipment[slot];
@@ -315,11 +324,7 @@ function updateCharacterSheetUI() {
   });
 }
 
-// Вспомогательная функция поиска предмета (сначала в itemTemplates клиента)
 function findItemTemplate(id) {
-  // Локальный кеш шаблонов будет загружаться при старте, пока заглушка
-  // В реальном коде нужно загрузить weapons.json и itemTemplates с сервера
-  // Пока используем простой объект-заглушку
   const stubTemplates = {
     'dgr_mythril_dagger': { name: 'Мифриловый кинжал' },
     'head_stub': { name: 'Кожаная шляпа' },
@@ -351,7 +356,6 @@ function buildInventoryPage() {
       </div>
       <div class="items-list" id="itemsList"></div>
     </div>
-    <!-- Модальное окно выбора предмета для экипировки -->
     <div class="modal-overlay" id="equipModal" style="display: none;">
       <div class="modal-content equip-modal">
         <h3 id="equipModalTitle">Выберите предмет</h3>
@@ -367,7 +371,6 @@ function renderInventory() {
   const itemsList = document.getElementById('itemsList');
   let inventory = gameState.inventory || [];
 
-  // Фильтрация по вкладке и фильтру
   let filtered = inventory.filter(itemStack => {
     const item = findItemTemplate(itemStack.id);
     if (!item) return false;
@@ -378,7 +381,6 @@ function renderInventory() {
     return true;
   });
 
-  // Сортировка
   if (currentTab === 'equip') {
     const typeOrder = ['weapon', 'head', 'armor', 'gloves', 'accessory'];
     filtered.sort((a, b) => {
@@ -432,7 +434,6 @@ function getTypeName(type) {
 let currentSlot = null;
 
 function initCharacterEvents() {
-  // Аватар
   const avatarContainer = document.getElementById('avatarContainer');
   const avatarUpload = document.getElementById('avatarUpload');
   const avatarImg = document.getElementById('avatarImg');
@@ -444,12 +445,10 @@ function initCharacterEvents() {
         const reader = new FileReader();
         reader.onload = (ev) => avatarImg.src = ev.target.result;
         reader.readAsDataURL(file);
-        // В будущем: загрузка на сервер
       }
     });
   }
 
-  // Клик по слотам экипировки
   document.querySelectorAll('.equip-slot').forEach(slot => {
     slot.addEventListener('click', () => {
       currentSlot = slot.dataset.slot;
@@ -457,7 +456,6 @@ function initCharacterEvents() {
     });
   });
 
-  // Монеты
   const gilCounter = document.getElementById('gilCounter');
   const gilModal = document.getElementById('gilModal');
   if (gilCounter && gilModal) {
@@ -470,7 +468,6 @@ function initCharacterEvents() {
     document.getElementById('absorbGilBtn').addEventListener('click', () => alert('Поглощение монет (в разработке)'));
   }
 
-  // Закрытие модалки экипировки
   const equipModal = document.getElementById('equipModal');
   if (equipModal) {
     document.getElementById('closeEquipModal').addEventListener('click', () => {
@@ -483,7 +480,6 @@ function initCharacterEvents() {
 }
 
 function initInventoryEvents() {
-  // Вкладки
   document.querySelectorAll('.inv-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.inv-tab').forEach(t => t.classList.remove('active'));
@@ -496,7 +492,6 @@ function initInventoryEvents() {
     });
   });
 
-  // Фильтры по типу
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const type = btn.dataset.type;
@@ -527,7 +522,6 @@ function openEquipModal(slot) {
   };
   title.textContent = `Выберите ${slotNames[slot].toLowerCase()}`;
 
-  // Находим подходящие предметы в инвентаре
   const available = (gameState.inventory || []).filter(stack => {
     const item = findItemTemplate(stack.id);
     if (!item) return false;
@@ -557,7 +551,6 @@ function openEquipModal(slot) {
     listDiv.querySelectorAll('.item-row').forEach(row => {
       row.addEventListener('click', () => {
         const itemId = row.dataset.id;
-        // Отправляем команду на сервер
         sendMessage({ type: 'equip_item', slot: currentSlot, itemId });
         modal.style.display = 'none';
       });
@@ -567,7 +560,7 @@ function openEquipModal(slot) {
   modal.style.display = 'flex';
 }
 
-// ========== ЗАГЛУШКИ ДЛЯ ОСТАЛЬНЫХ СТРАНИЦ ==========
+// ========== ЗАГЛУШКИ СТРАНИЦ ==========
 function buildAbilitiesPage() {
   document.getElementById('page-abilities').innerHTML = '<div class="placeholder-page">Способности (в разработке)</div>';
 }
@@ -581,7 +574,7 @@ function buildMasterPage() {
   document.getElementById('page-master').innerHTML = '<div class="placeholder-page">Панель мастера (в разработке)</div>';
 }
 
-// ========== ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ ==========
+// ========== ИНИЦИАЛИЗАЦИЯ ==========
 document.addEventListener('DOMContentLoaded', () => {
   connectWebSocket();
 
