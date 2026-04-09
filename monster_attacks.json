@@ -1,0 +1,24 @@
+{
+  "attacks": [
+    {
+      "id": "mon_knife",
+      "name": "Нож",
+      "type": "physical",
+      "formula": "standardPhysical",
+      "description": "Базовая физическая атака",
+      "element": null,
+      "status": null,
+      "power": null
+    },
+    {
+      "id": "mon_goblin_punch",
+      "name": "Удар гоблина",
+      "type": "magical",
+      "formula": "goblinPunch",
+      "description": "Особая атака гоблина, наносящая магический урон",
+      "element": null,
+      "status": null,
+      "power": 20
+    }
+  ]
+}
