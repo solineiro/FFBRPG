@@ -1,0 +1,42 @@
+{
+  "monsters": [
+    {
+      "id": 1,
+      "name": "Гоблин",
+      "level": 5,
+      "hp": 33,
+      "mp": 172,
+      "strength": 8,
+      "defense": 10,
+      "magic": 8,
+      "magicDefense": 10,
+      "attack": 8,
+      "spirit": 10,
+      "speed": 19,
+      "gil": 88,
+      "elementalAffinities": {
+        "fire": 150,
+        "ice": 100,
+        "lightning": 100,
+        "water": 100,
+        "wind": 100,
+        "earth": 100,
+        "holy": 100,
+        "shadow": 100
+      },
+      "steal": [
+        { "rarity": "veryRare", "item": null },
+        { "rarity": "rare", "item": null },
+        { "rarity": "uncommon", "item": null },
+        { "rarity": "common", "item": "Potion" }
+      ],
+      "drop": [
+        { "rarity": "veryRare", "item": "Phoenix Pinion", "chance": 0.39 },
+        { "rarity": "rare", "item": "Echo Screen", "chance": 12.5 },
+        { "rarity": "uncommon", "item": "Potion", "chance": 37.5 },
+        { "rarity": "common", "item": null, "chance": 100 }
+      ],
+      "attackIds": ["mon_knife", "mon_goblin_punch"]
+    }
+  ]
+}

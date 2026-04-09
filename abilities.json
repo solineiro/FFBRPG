@@ -1,0 +1,744 @@
+{
+  "passiveAbilities": [
+    {
+      "id": "auto_reflect",
+      "name": "Авто-отражение",
+      "description": "Постоянный статус «Отражения» на протяжении всего боя",
+      "classes": [
+        { "class": "thief", "ap": 95 },
+        { "class": "blackmage", "ap": 70 },
+        { "class": "warrior", "ap": 95 },
+        { "class": "summoner", "ap": 75 },
+        { "class": "dragoon", "ap": 95 },
+        { "class": "bluemage", "ap": 75 },
+        { "class": "whitemage", "ap": 70 },
+        { "class": "ninja", "ap": 85 }
+      ],
+      "magicStonesCost": 15,
+      "effect": "Начало боя со статусом Reflect"
+    },
+    {
+      "id": "auto_float",
+      "name": "Авто-полёт",
+      "description": "Постоянный статус «Полёт» на протяжении всего боя",
+      "classes": [
+        { "class": "thief", "ap": 20 },
+        { "class": "blackmage", "ap": 20 },
+        { "class": "warrior", "ap": 20 },
+        { "class": "summoner", "ap": 20 },
+        { "class": "dragoon", "ap": 20 },
+        { "class": "bluemage", "ap": 40 },
+        { "class": "whitemage", "ap": 25 },
+        { "class": "ninja", "ap": 35 }
+      ],
+      "magicStonesCost": 6,
+      "effect": "Начало боя со статусом Float"
+    },
+    {
+      "id": "auto_regen",
+      "name": "Авто-регенерация",
+      "description": "Постоянный статус «Реген» на протяжении всего боя",
+      "classes": [
+        { "class": "thief", "ap": 25 },
+        { "class": "blackmage", "ap": 30 },
+        { "class": "warrior", "ap": 75 },
+        { "class": "summoner", "ap": 35 },
+        { "class": "dragoon", "ap": 25 },
+        { "class": "bluemage", "ap": 30 },
+        { "class": "whitemage", "ap": 35 },
+        { "class": "ninja", "ap": 35 }
+      ],
+      "magicStonesCost": 10,
+      "effect": "Начало боя со статусом Regen"
+    },
+    {
+      "id": "auto_life",
+      "name": "Авто-жизнь",
+      "description": "Начните бой со статусом «Автожизнь»",
+      "classes": [
+        { "class": "thief", "ap": 130 },
+        { "class": "blackmage", "ap": 70 },
+        { "class": "warrior", "ap": 155 },
+        { "class": "summoner", "ap": 105 },
+        { "class": "dragoon", "ap": 125 },
+        { "class": "bluemage", "ap": 165 },
+        { "class": "whitemage", "ap": 100 },
+        { "class": "ninja", "ap": 140 }
+      ],
+      "magicStonesCost": 12,
+      "effect": "Начало боя со статусом Auto-Life"
+    },
+    {
+      "id": "hp_plus_10",
+      "name": "ХП+10%",
+      "description": "Увеличивает максимальный запас здоровья на 10%",
+      "classes": [
+        { "class": "warrior", "ap": 20 },
+        { "class": "dragoon", "ap": 30 },
+        { "class": "ninja", "ap": 10 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Увеличивает max HP на 10%"
+    },
+    {
+      "id": "hp_plus_20",
+      "name": "ХП+20%",
+      "description": "Увеличивает максимальный запас здоровья на 20%",
+      "classes": [
+        { "class": "thief", "ap": 40 },
+        { "class": "warrior", "ap": 60 },
+        { "class": "dragoon", "ap": 75 },
+        { "class": "ninja", "ap": 40 }
+      ],
+      "magicStonesCost": 8,
+      "effect": "Увеличивает max HP на 20%"
+    },
+    {
+      "id": "mp_plus_10",
+      "name": "МП+10%",
+      "description": "Увеличивает максимальный уровень MP на 10%",
+      "classes": [
+        { "class": "dragoon", "ap": 35 },
+        { "class": "bluemage", "ap": 50 },
+        { "class": "whitemage", "ap": 15 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Увеличивает max MP на 10%"
+    },
+    {
+      "id": "mp_plus_20",
+      "name": "МП+20%",
+      "description": "Увеличивает максимальный уровень MP на 20%",
+      "classes": [
+        { "class": "blackmage", "ap": 30 },
+        { "class": "summoner", "ap": 45 },
+        { "class": "whitemage", "ap": 50 }
+      ],
+      "magicStonesCost": 8,
+      "effect": "Увеличивает max MP на 20%"
+    },
+    {
+      "id": "accuracy_plus",
+      "name": "Точность+",
+      "description": "Повышает точность физических атак",
+      "classes": [
+        { "class": "thief", "ap": 30 },
+        { "class": "warrior", "ap": 40 },
+        { "class": "dragoon", "ap": 30 },
+        { "class": "ninja", "ap": 30 }
+      ],
+      "magicStonesCost": 2,
+      "effect": "Физические атаки всегда попадают, игнорируя Vanish"
+    },
+    {
+      "id": "distract",
+      "name": "Отвлечение",
+      "description": "Снижает точность физических атак противника",
+      "classes": [
+        { "class": "thief", "ap": 30 },
+        { "class": "warrior", "ap": 30 },
+        { "class": "dragoon", "ap": 25 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "Точность физ. атак по носителю снижена вдвое"
+    },
+    {
+      "id": "magic_infusion",
+      "name": "Магическая инфузия",
+      "description": "Использует собственные MP для повышения силы атаки",
+      "classes": [
+        { "class": "thief", "ap": 45 },
+        { "class": "warrior", "ap": 50 },
+        { "class": "dragoon", "ap": 20 },
+        { "class": "ninja", "ap": 60 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "Обычная атака тратит 1/8 max MP и наносит в 1.5 раза больше урона"
+    },
+    {
+      "id": "bird_killer",
+      "name": "Убийца птиц",
+      "description": "Наносит смертельный урон птицам",
+      "classes": [
+        { "class": "thief", "ap": 20 },
+        { "class": "warrior", "ap": 25 },
+        { "class": "dragoon", "ap": 30 },
+        { "class": "ninja", "ap": 10 }
+      ],
+      "magicStonesCost": 3,
+      "effect": "Физ. атаки наносят 1.5x урона врагам с типом «птица»"
+    },
+    {
+      "id": "bug_killer",
+      "name": "Убийца насекомых",
+      "description": "Наносит смертельный урон насекомым",
+      "classes": [
+        { "class": "thief", "ap": 35 },
+        { "class": "warrior", "ap": 50 },
+        { "class": "dragoon", "ap": 25 },
+        { "class": "ninja", "ap": 10 }
+      ],
+      "magicStonesCost": 2,
+      "effect": "Физ. атаки наносят 1.5x урона врагам-насекомым"
+    },
+    {
+      "id": "stone_killer",
+      "name": "Убийца камней",
+      "description": "Наносит смертельный урон каменным врагам",
+      "classes": [
+        { "class": "thief", "ap": 30 },
+        { "class": "warrior", "ap": 20 },
+        { "class": "dragoon", "ap": 20 },
+        { "class": "ninja", "ap": 10 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Физ. атаки наносят 1.5x урона каменным врагам"
+    },
+    {
+      "id": "undead_killer",
+      "name": "Убийца нежити",
+      "description": "Наносит смертельный урон нежити",
+      "classes": [
+        { "class": "thief", "ap": 45 },
+        { "class": "warrior", "ap": 30 },
+        { "class": "dragoon", "ap": 20 },
+        { "class": "ninja", "ap": 10 }
+      ],
+      "magicStonesCost": 2,
+      "effect": "Физ. атаки наносят 1.5x урона нежити"
+    },
+    {
+      "id": "dragon_killer",
+      "name": "Убийца драконов",
+      "description": "Наносит смертельный урон драконам",
+      "classes": [
+        { "class": "dragoon", "ap": 70 }
+      ],
+      "magicStonesCost": 3,
+      "effect": "Физ. атаки наносят 1.5x урона врагам-драконам"
+    },
+    {
+      "id": "devil_killer",
+      "name": "Убийца дьявола",
+      "description": "Наносит смертельный урон демонам",
+      "classes": [
+        { "class": "thief", "ap": 25 },
+        { "class": "warrior", "ap": 30 },
+        { "class": "dragoon", "ap": 30 },
+        { "class": "ninja", "ap": 10 }
+      ],
+      "magicStonesCost": 2,
+      "effect": "Физ. атаки наносят 1.5x урона врагам-демонам"
+    },
+    {
+      "id": "beast_killer",
+      "name": "Убийца зверей",
+      "description": "Наносит смертельный урон зверям",
+      "classes": [
+        { "class": "thief", "ap": 30 },
+        { "class": "warrior", "ap": 55 },
+        { "class": "dragoon", "ap": 25 },
+        { "class": "ninja", "ap": 10 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Физ. атаки наносят 1.5x урона врагам-зверям"
+    },
+    {
+      "id": "man_killer",
+      "name": "Убийца людей",
+      "description": "Наносит смертельный урон людям",
+      "classes": [
+        { "class": "thief", "ap": 25 },
+        { "class": "warrior", "ap": 20 },
+        { "class": "dragoon", "ap": 20 },
+        { "class": "ninja", "ap": 10 }
+      ],
+      "magicStonesCost": 2,
+      "effect": "Физ. атаки наносят 1.5x урона врагам-людям"
+    },
+    {
+      "id": "steal_gil",
+      "name": "Украсть гила",
+      "description": "Украдите гила вместе с предметами",
+      "classes": [
+        { "class": "thief", "ap": 40 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "При успешной краже дополнительно даёт небольшое количество гил"
+    },
+    {
+      "id": "healer",
+      "name": "Целитель",
+      "description": "Восстанавливает здоровье цели",
+      "classes": [
+        { "class": "blackmage", "ap": 20 },
+        { "class": "summoner", "ap": 30 },
+        { "class": "bluemage", "ap": 60 },
+        { "class": "whitemage", "ap": 20 },
+        { "class": "ninja", "ap": 40 }
+      ],
+      "magicStonesCost": 2,
+      "effect": "Физ. атаки лечат цель вместо нанесения урона"
+    },
+    {
+      "id": "high_jump",
+      "name": "Высокий прыжок",
+      "description": "Прыгайте выше, чтобы увеличить силу прыжковой атаки",
+      "classes": [
+        { "class": "dragoon", "ap": 75 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Увеличивает урон от команды «Прыжок» до 200% от Атаки"
+    },
+    {
+      "id": "master_thief",
+      "name": "Мастер-вор",
+      "description": "Украдите более качественные предметы",
+      "classes": [
+        { "class": "thief", "ap": 50 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "Повышает шанс кражи редких и очень редких предметов до 1/8"
+    },
+    {
+      "id": "add_status",
+      "name": "Добавить статус",
+      "description": "Добавляет эффект статуса оружия при атаке",
+      "classes": [
+        { "class": "thief", "ap": 35 },
+        { "class": "blackmage", "ap": 25 },
+        { "class": "warrior", "ap": 50 },
+        { "class": "dragoon", "ap": 25 },
+        { "class": "bluemage", "ap": 35 },
+        { "class": "ninja", "ap": 20 }
+      ],
+      "magicStonesCost": 3,
+      "effect": "Шанс наложить статус оружия при атаке"
+    },
+    {
+      "id": "gamble_defense",
+      "name": "Азартная защита",
+      "description": "Время от времени повышает защиту",
+      "classes": [
+        { "class": "thief", "ap": 20 },
+        { "class": "dragoon", "ap": 20 },
+        { "class": "bluemage", "ap": 40 },
+        { "class": "ninja", "ap": 35 }
+      ],
+      "magicStonesCost": 1,
+      "effect": "Защита случайно меняется от 0 до Защиты*2 при атаке врага"
+    },
+    {
+      "id": "chemist",
+      "name": "Алхимик",
+      "description": "Удваивает эффективность лекарственных средств",
+      "classes": [
+        { "class": "summoner", "ap": 15 },
+        { "class": "warrior", "ap": 20 },
+        { "class": "dragoon", "ap": 35 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Удваивает эффект Potion, Hi-Potion и Ether"
+    },
+    {
+      "id": "power_throw",
+      "name": "Силовой бросок",
+      "description": "Увеличивает силу броска",
+      "classes": [
+        { "class": "ninja", "ap": 125 }
+      ],
+      "magicStonesCost": 19,
+      "effect": "Усиливает команду «Бросок» на 50%"
+    },
+    {
+      "id": "gil_thief",
+      "name": "Вор гил",
+      "description": "Крадет немного гил вместе с предметом",
+      "classes": [
+        { "class": "thief", "ap": 40 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "При краже даёт дополнительно гил"
+    },
+    {
+      "id": "deep_chakra",
+      "name": "Глубокие чакры",
+      "description": "Увеличивает силу чакры",
+      "classes": [
+        { "class": "ninja", "ap": 30 }
+      ],
+      "magicStonesCost": 3,
+      "effect": "Удваивает силу способности «Чакра»"
+    },
+    {
+      "id": "reflect_null",
+      "name": "Отражение-Ноль",
+      "description": "Отменяет отражение при атаке",
+      "classes": [
+        { "class": "blackmage", "ap": 30 },
+        { "class": "summoner", "ap": 45 },
+        { "class": "whitemage", "ap": 55 }
+      ],
+      "magicStonesCost": 7,
+      "effect": "Заклинания игнорируют статус Reflect"
+    },
+    {
+      "id": "reflect_x2",
+      "name": "Отражение x2",
+      "description": "Удваивает силу заклинаний при использовании Отражения",
+      "classes": [
+        { "class": "blackmage", "ap": 110 }
+      ],
+      "magicStonesCost": 17,
+      "effect": "Удваивает урон отражённых заклинаний"
+    },
+    {
+      "id": "mag_elem_null",
+      "name": "Маг Элем Нуль",
+      "description": "Аннулирует магический элемент",
+      "classes": [
+        { "class": "blackmage", "ap": 115 }
+      ],
+      "magicStonesCost": 13,
+      "effect": "Все заклинания становятся неэлементарными"
+    },
+    {
+      "id": "concentrate",
+      "name": "Концентрация",
+      "description": "Увеличивает силу заклинаний",
+      "classes": [
+        { "class": "summoner", "ap": 80 },
+        { "class": "whitemage", "ap": 90 }
+      ],
+      "magicStonesCost": 10,
+      "effect": "Усиливает Cure, Cura, Curaga, Life, Full-Life и воскрешение Феникса на 50%"
+    },
+    {
+      "id": "half_mp",
+      "name": "Половина МП",
+      "description": "Сокращает потребление маны в бою вдвое",
+      "classes": [
+        { "class": "blackmage", "ap": 140 },
+        { "class": "summoner", "ap": 125 },
+        { "class": "bluemage", "ap": 90 },
+        { "class": "whitemage", "ap": 120 }
+      ],
+      "magicStonesCost": 11,
+      "effect": "В бою затраты MP на способности снижены вдвое"
+    },
+    {
+      "id": "high_tide",
+      "name": "Высший прилив",
+      "description": "Позволяет быстрее входить в транс",
+      "classes": [
+        { "class": "thief", "ap": 35 },
+        { "class": "blackmage", "ap": 25 },
+        { "class": "warrior", "ap": 35 },
+        { "class": "summoner", "ap": 30 },
+        { "class": "dragoon", "ap": 20 },
+        { "class": "bluemage", "ap": 250 },
+        { "class": "whitemage", "ap": 30 },
+        { "class": "ninja", "ap": 60 }
+      ],
+      "magicStonesCost": 8,
+      "effect": "Шкала транса заполняется на величину Духа (вместо случайного от 1 до Духа)"
+    },
+    {
+      "id": "counter",
+      "name": "Контрудар",
+      "description": "Контратаки при физическом нападении",
+      "classes": [
+        { "class": "thief", "ap": 70 },
+        { "class": "warrior", "ap": 100 },
+        { "class": "dragoon", "ap": 85 },
+        { "class": "bluemage", "ap": 55 },
+        { "class": "ninja", "ap": 240 }
+      ],
+      "magicStonesCost": 8,
+      "effect": "При попадании физ. атакой может быть нанесён ответный удар"
+    },
+    {
+      "id": "eye_4_eye",
+      "name": "Глаз за Глаз",
+      "description": "Увеличивает шанс активации контратаки",
+      "classes": [
+        { "class": "thief", "ap": 60 },
+        { "class": "warrior", "ap": 35 },
+        { "class": "dragoon", "ap": 35 },
+        { "class": "ninja", "ap": 50 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "Удваивает шанс срабатывания Контрудара"
+    },
+    {
+      "id": "cover",
+      "name": "Прикрытие",
+      "description": "Вы получаете урон вместо союзника",
+      "classes": [
+        { "class": "warrior", "ap": 20 },
+        { "class": "dragoon", "ap": 30 },
+        { "class": "ninja", "ap": 90 }
+      ],
+      "magicStonesCost": 6,
+      "effect": "Перехватывает физ. атаку, направленную на союзника с HP <= 1/6 max"
+    },
+    {
+      "id": "body_temp",
+      "name": "Температура тела",
+      "description": "Предотвращает замерзание и нагревание",
+      "classes": [
+        { "class": "thief", "ap": 25 },
+        { "class": "blackmage", "ap": 15 },
+        { "class": "warrior", "ap": 35 },
+        { "class": "summoner", "ap": 25 },
+        { "class": "dragoon", "ap": 20 },
+        { "class": "bluemage", "ap": 20 },
+        { "class": "whitemage", "ap": 20 },
+        { "class": "ninja", "ap": 30 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Иммунитет к статусам Freeze и Heat"
+    },
+    {
+      "id": "ability_up",
+      "name": "Способный",
+      "description": "Персонажи быстрее осваивают способности",
+      "classes": [
+        { "class": "thief", "ap": 95 },
+        { "class": "blackmage", "ap": 55 },
+        { "class": "warrior", "ap": 70 },
+        { "class": "summoner", "ap": 60 },
+        { "class": "dragoon", "ap": 65 },
+        { "class": "bluemage", "ap": 40 },
+        { "class": "whitemage", "ap": 55 },
+        { "class": "ninja", "ap": 90 }
+      ],
+      "magicStonesCost": 3,
+      "effect": "Удваивает получаемые AP в бою"
+    },
+    {
+      "id": "millionaire",
+      "name": "Миллионер",
+      "description": "Получайте больше Гил после боя",
+      "classes": [
+        { "class": "bluemage", "ap": 100 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "Увеличивает получаемые гил в 1.5 раза"
+    },
+    {
+      "id": "flee_gil",
+      "name": "Денежный побег",
+      "description": "Получайте Гил, даже убегая от боя",
+      "classes": [
+        { "class": "thief", "ap": 45 },
+        { "class": "ninja", "ap": 30 }
+      ],
+      "magicStonesCost": 3,
+      "effect": "При побеге даётся 10% гил от суммы за победу"
+    },
+    {
+      "id": "insomniac",
+      "name": "Бессонница",
+      "description": "Мешает спать",
+      "classes": [
+        { "class": "thief", "ap": 30 },
+        { "class": "blackmage", "ap": 25 },
+        { "class": "warrior", "ap": 25 },
+        { "class": "summoner", "ap": 25 },
+        { "class": "dragoon", "ap": 30 },
+        { "class": "bluemage", "ap": 40 },
+        { "class": "whitemage", "ap": 25 },
+        { "class": "ninja", "ap": 20 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "Иммунитет к статусу Sleep"
+    },
+    {
+      "id": "antibody",
+      "name": "Антитело",
+      "description": "Предотвращает отравление",
+      "classes": [
+        { "class": "thief", "ap": 20 },
+        { "class": "blackmage", "ap": 30 },
+        { "class": "warrior", "ap": 35 },
+        { "class": "summoner", "ap": 15 },
+        { "class": "dragoon", "ap": 15 },
+        { "class": "bluemage", "ap": 20 },
+        { "class": "whitemage", "ap": 20 },
+        { "class": "ninja", "ap": 25 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Иммунитет к статусу Poison"
+    },
+    {
+      "id": "bright_eyes",
+      "name": "Сияющие Глаза",
+      "description": "Предотвращает Тьму",
+      "classes": [
+        { "class": "thief", "ap": 35 },
+        { "class": "warrior", "ap": 25 },
+        { "class": "dragoon", "ap": 20 },
+        { "class": "ninja", "ap": 25 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Иммунитет к статусу Darkness"
+    },
+    {
+      "id": "loudmouth",
+      "name": "Болтун",
+      "description": "Предотвращает тишину",
+      "classes": [
+        { "class": "blackmage", "ap": 40 },
+        { "class": "summoner", "ap": 20 },
+        { "class": "bluemage", "ap": 30 },
+        { "class": "whitemage", "ap": 15 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Иммунитет к статусу Silence"
+    },
+    {
+      "id": "restore_hp",
+      "name": "Восстановить HP",
+      "description": "Автоматически восстанавливает здоровье при приближении смерти",
+      "classes": [
+        { "class": "thief", "ap": 85 },
+        { "class": "warrior", "ap": 100 },
+        { "class": "dragoon", "ap": 85 },
+        { "class": "ninja", "ap": 75 }
+      ],
+      "magicStonesCost": 8,
+      "effect": "При HP <= 1/6 max и получении урона (не летального) восстанавливает 50% max HP"
+    },
+    {
+      "id": "jelly",
+      "name": "Желе",
+      "description": "Предотвращает окаменение и постепенное окаменение",
+      "classes": [
+        { "class": "thief", "ap": 35 },
+        { "class": "blackmage", "ap": 25 },
+        { "class": "warrior", "ap": 30 },
+        { "class": "summoner", "ap": 40 },
+        { "class": "dragoon", "ap": 30 },
+        { "class": "bluemage", "ap": 35 },
+        { "class": "whitemage", "ap": 35 },
+        { "class": "ninja", "ap": 15 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Иммунитет к Petrify и Gradual Petrify"
+    },
+    {
+      "id": "return_magic",
+      "name": "Верните магию",
+      "description": "Возвращает магию, использованную врагом",
+      "classes": [
+        { "class": "blackmage", "ap": 90 },
+        { "class": "ninja", "ap": 170 }
+      ],
+      "magicStonesCost": 9,
+      "effect": "При попадании заклинания (из списка) контратакует тем же заклинанием"
+    },
+    {
+      "id": "absorb_mp",
+      "name": "Поглощение MP",
+      "description": "Поглощает MP, используемое противником",
+      "classes": [
+        { "class": "bluemage", "ap": 80 }
+      ],
+      "magicStonesCost": 6,
+      "effect": "При попадании вражеского заклинания восстанавливает MP, равное стоимости заклинания"
+    },
+    {
+      "id": "auto_potion",
+      "name": "Авто-зелье",
+      "description": "Автоматически использует Potion при получении урона",
+      "classes": [
+        { "class": "thief", "ap": 30 },
+        { "class": "blackmage", "ap": 10 },
+        { "class": "warrior", "ap": 20 },
+        { "class": "summoner", "ap": 20 },
+        { "class": "dragoon", "ap": 30 },
+        { "class": "bluemage", "ap": 20 },
+        { "class": "whitemage", "ap": 30 },
+        { "class": "ninja", "ap": 30 }
+      ],
+      "magicStonesCost": 3,
+      "effect": "При получении урона автоматически использует Potion (или Hi-Potion, если нет Potion)"
+    },
+    {
+      "id": "locomotion",
+      "name": "Подвижность",
+      "description": "Предотвращает остановку",
+      "classes": [
+        { "class": "thief", "ap": 30 },
+        { "class": "blackmage", "ap": 35 },
+        { "class": "warrior", "ap": 35 },
+        { "class": "summoner", "ap": 30 },
+        { "class": "dragoon", "ap": 25 },
+        { "class": "bluemage", "ap": 20 },
+        { "class": "whitemage", "ap": 15 },
+        { "class": "ninja", "ap": 20 }
+      ],
+      "magicStonesCost": 4,
+      "effect": "Иммунитет к статусу Stop"
+    },
+    {
+      "id": "clear_headed",
+      "name": "Ясная голова",
+      "description": "Предотвращает путаницу",
+      "classes": [
+        { "class": "thief", "ap": 25 },
+        { "class": "blackmage", "ap": 15 },
+        { "class": "warrior", "ap": 30 },
+        { "class": "summoner", "ap": 25 },
+        { "class": "dragoon", "ap": 35 },
+        { "class": "bluemage", "ap": 25 },
+        { "class": "whitemage", "ap": 15 },
+        { "class": "ninja", "ap": 30 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "Иммунитет к статусу Confuse"
+    },
+    {
+      "id": "bandit",
+      "name": "Бандит",
+      "description": "Увеличивает вероятность успеха кражи",
+      "classes": [
+        { "class": "thief", "ap": 40 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "Кража никогда не промахивается"
+    },
+    {
+      "id": "mug",
+      "name": "Кружка",
+      "description": "Наносит урон врагу при краже",
+      "classes": [
+        { "class": "thief", "ap": 65 }
+      ],
+      "magicStonesCost": 3,
+      "effect": "Успешная кража также наносит небольшой урон"
+    },
+    {
+      "id": "odin_sword",
+      "name": "Меч Одина",
+      "description": "Атакует с помощью эйдолона Одина",
+      "classes": [
+        { "class": "summoner", "ap": 50 }
+      ],
+      "magicStonesCost": 5,
+      "effect": "Если призыв Один не убивает цель, наносит дополнительный урон"
+    },
+    {
+      "id": "summon_master",
+      "name": "Мастер призыва",
+      "description": "Увеличивает силу эйдолонов",
+      "classes": [
+        { "class": "summoner", "ap": 190 },
+        { "class": "whitemage", "ap": 150 }
+      ],
+      "magicStonesCost": 12,
+      "effect": "Всегда используется полный призыв"
+    }
+  ]
+}
